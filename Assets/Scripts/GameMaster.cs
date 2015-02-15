@@ -151,6 +151,16 @@ public class GameMaster : MonoBehaviour
                 NewSquaresTopToBottom();
                 break;
             }
+            case Direction.LeftToRight:
+            {
+                NewSquaresLeftToRight();
+                break;
+            }
+            case Direction.RightToLeft:
+            {
+                NewSquaresRightToLeft();
+                break;
+            }
         }
         _deadSquareCoordsToReplace.Clear();
     }
@@ -268,6 +278,121 @@ public class GameMaster : MonoBehaviour
                 sqr.GetComponent<SquareControl>().newTarget = GridPosToVec(coord.X, coord.Y);
             }
 
+        }
+    }
+
+    private void NewSquaresLeftToRight()
+    {
+        // use a priority queue to keep track of coords
+        var toProcess = new PriorityQueue<XYCoord>(PriorityQueueType.Maximum);
+        _deadSquareCoordsToReplace.ForEach(coord => toProcess.Enqueue(coord));
+
+
+        while (toProcess.Count > 0)
+        {
+            var coord = toProcess.Dequeue();
+
+            var foundValidSquare = false;
+
+            // seach upward for valid squares
+            var currentX = coord.X - 1;
+            while (currentX >= 0 && !foundValidSquare)
+            {
+                var potentialSquareCandidate = squares[currentX, coord.Y];
+                if (potentialSquareCandidate == null)
+                {
+                    currentX--;
+                    continue;
+                }
+
+
+                // valid square, so reassign it
+                potentialSquareCandidate.GetComponent<SquareControl>().newTarget = GridPosToVec(coord.X,
+                    coord.Y);
+                potentialSquareCandidate.GetComponent<SquareControl>().origPos =
+                    potentialSquareCandidate.transform.position;
+                potentialSquareCandidate.GetComponent<SquareControl>().movingToNewPosition = true;
+                potentialSquareCandidate.GetComponent<SquareControl>().gridX = coord.X;
+                potentialSquareCandidate.GetComponent<SquareControl>().gridY = coord.Y;
+
+                // assign it new position
+                squares[coord.X, coord.Y] = potentialSquareCandidate;
+                // remove old position, and add it to the queue
+                squares[currentX, coord.Y] = null;
+                toProcess.Enqueue(new XYCoord(currentX, coord.Y));
+
+                foundValidSquare = true;
+
+            }
+
+            // if still not found, then we spawn a new square
+            if (!foundValidSquare)
+            {
+                var sqr = CreateSquareAt(coord.X, coord.Y);
+                // override the position
+                sqr.GetComponent<SquareControl>().transform.position = GridPosToVec(-1, coord.Y);
+                sqr.GetComponent<SquareControl>().origPos = GridPosToVec(-1, coord.Y);
+                sqr.GetComponent<SquareControl>().movingToNewPosition = true;
+                sqr.GetComponent<SquareControl>().newTarget = GridPosToVec(coord.X, coord.Y);
+            }
+
+        }
+    }
+
+    private void NewSquaresRightToLeft()
+    {
+        // use a priority queue to keep track of coords
+        var toProcess = new PriorityQueue<XYCoord>(PriorityQueueType.Minimum);
+        _deadSquareCoordsToReplace.ForEach(coord => toProcess.Enqueue(coord));
+
+
+        while (toProcess.Count > 0)
+        {
+            var coord = toProcess.Dequeue();
+
+            var foundValidSquare = false;
+
+            // seach downward for valid squares
+            var currentX = coord.X;
+            while (currentX < sizeX && !foundValidSquare)
+            {
+                var potentialSquareCandidate = squares[currentX, coord.Y];
+                if (potentialSquareCandidate == null)
+                {
+                    currentX++;
+                    continue;
+                }
+
+
+                // valid square, so reassign it
+                potentialSquareCandidate.GetComponent<SquareControl>().newTarget = GridPosToVec(coord.X,
+                    coord.Y);
+                potentialSquareCandidate.GetComponent<SquareControl>().origPos =
+                    potentialSquareCandidate.transform.position;
+                potentialSquareCandidate.GetComponent<SquareControl>().movingToNewPosition = true;
+                potentialSquareCandidate.GetComponent<SquareControl>().gridX = coord.X;
+                potentialSquareCandidate.GetComponent<SquareControl>().gridY = coord.Y;
+
+                // assign it new position
+                squares[coord.X, coord.Y] = potentialSquareCandidate;
+                // remove old position, and add it to the queue
+                squares[currentX, coord.Y] = null;
+                toProcess.Enqueue(new XYCoord(currentX, coord.Y));
+
+                foundValidSquare = true;
+
+            }
+
+            // if still not found, then we spawn a new square
+            if (!foundValidSquare)
+            {
+                var sqr = CreateSquareAt(coord.X, coord.Y);
+                // override the position
+                sqr.GetComponent<SquareControl>().transform.position = GridPosToVec(sizeX, coord.Y);
+                sqr.GetComponent<SquareControl>().origPos = GridPosToVec(sizeX, coord.Y);
+                sqr.GetComponent<SquareControl>().movingToNewPosition = true;
+                sqr.GetComponent<SquareControl>().newTarget = GridPosToVec(coord.X, coord.Y);
+            }
         }
     }
 
