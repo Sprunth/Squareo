@@ -41,8 +41,8 @@ public class SquareControl : MonoBehaviour
 	    if (movingToNewPosition)
 	    {
 	        gameObject.transform.position = Vector2.Lerp(origPos, newTarget, movementProgress);
-	        movementProgress += 0.02f;
-	        if (movementProgress > 1)
+	        movementProgress += 0.05f;
+	        if (movementProgress > 1.01)
 	        {
                 movementProgress = 0;
 	            movingToNewPosition = false;
