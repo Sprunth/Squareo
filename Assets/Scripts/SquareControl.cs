@@ -4,11 +4,6 @@ using System.Collections;
 
 public class SquareControl : MonoBehaviour
 {
-
-    private GameMaster _gameMaster;
-
-    public int gridX, gridY;
-
     private readonly static List<Color> colors = new List<Color>
     {
         new Color(255/255f,97/255f,56/255f), //red
@@ -17,6 +12,14 @@ public class SquareControl : MonoBehaviour
         new Color(255/255f,240/255f,165/255f), // tan
         new Color(255/255f,211/255f,78/255f), // yellow
     };
+
+    private GameMaster _gameMaster;
+
+    public int gridX, gridY;
+
+    public Vector2 origPos, newTarget;
+    public bool movingToNewPosition = false;
+    public float movementProgress = 0;
 
     public Color Color { get; private set; }
 
@@ -34,8 +37,18 @@ public class SquareControl : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-	    
 
+	    if (movingToNewPosition)
+	    {
+	        gameObject.transform.position = Vector2.Lerp(origPos, newTarget, movementProgress);
+	        movementProgress += 0.02f;
+	        if (movementProgress > 1)
+	        {
+                movementProgress = 0;
+	            movingToNewPosition = false;
+	            origPos = newTarget = gameObject.transform.position;
+	        }
+	    }
 	    
 	}
 
@@ -50,5 +63,7 @@ public class SquareControl : MonoBehaviour
     {
         DestroyObject(gameObject);
     }
+
+    
 
 }
