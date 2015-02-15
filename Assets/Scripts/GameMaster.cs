@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using NGenerics.DataStructures.Queues;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GameMaster : MonoBehaviour
 {
@@ -24,6 +25,9 @@ public class GameMaster : MonoBehaviour
 
     private Direction _clearDirection;
 
+    private int _score = 0;
+    private Text _scoreText;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -41,6 +45,9 @@ public class GameMaster : MonoBehaviour
 	            CreateSquareAt(x, y);
 	        }
 	    }
+
+	    _scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
+
 	}
 	
 	// Update is called once per frame
@@ -57,20 +64,7 @@ public class GameMaster : MonoBehaviour
 	            if (squares[coord.X, coord.Y] != null)
 	                needMoreTime = true;
 	        });
-            /*
-            for (var x = 0; x < sizeX; x++)
-	        {
-	            for (var y = 0; y < sizeY; y++)
-	            {
-	                if (squares[x, y] != null && squares[x,y].animation.isPlaying)
-	                {
-	                    Debug.Log("Playing animation");
-	                    needMoreTime = true;
-	                }
-	                    
-	            }
-	        }
-            */
+
 	        if (!needMoreTime)
 	        {
 	            Debug.Log("Death done");
@@ -419,6 +413,10 @@ public class GameMaster : MonoBehaviour
 
         // set the clear direction from the first pair connection
         _clearDirection = SetClearDirection(lineConnector.SelectedSquares[0], lineConnector.SelectedSquares[1]);
+
+        // Update score
+        _score += (int)Math.Pow(lineConnector.SelectedSquares.Count, 2);
+        _scoreText.text = String.Format("Score: {0}", _score);
 
         lineConnector.SelectedSquares.ForEach(o =>
         {

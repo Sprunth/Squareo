@@ -13,7 +13,7 @@ public class SquareControl : MonoBehaviour
         new Color(255/255f,211/255f,78/255f), // yellow
     };
 
-    private GameMaster _gameMaster;
+    //private GameMaster _gameMaster;
 
     public int gridX, gridY;
 
@@ -26,7 +26,7 @@ public class SquareControl : MonoBehaviour
 	// Use this for initialization
     private void Start()
     {
-        _gameMaster = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
+        //_gameMaster = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
 	    GetComponent<SpriteRenderer>().color = Color = colors[Random.Range(0, colors.Count)];
 
         //gameObject.animation.enabled = false;
@@ -41,12 +41,12 @@ public class SquareControl : MonoBehaviour
 	    if (movingToNewPosition)
 	    {
 	        gameObject.transform.position = Vector2.Lerp(origPos, newTarget, movementProgress);
-	        movementProgress += 0.05f;
+	        movementProgress += 0.08f;
 	        if (movementProgress > 1.01)
 	        {
                 movementProgress = 0;
 	            movingToNewPosition = false;
-	            origPos = newTarget = gameObject.transform.position;
+	            origPos = gameObject.transform.position = newTarget;
 	        }
 	    }
 	    
