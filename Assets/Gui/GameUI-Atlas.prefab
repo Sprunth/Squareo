@@ -1,0 +1,526 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &134118
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 434118}
+  - 114: {fileID: 11434118}
+  m_Layer: 0
+  m_Name: GameUI-Atlas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &434118
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 134118}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11434118
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 134118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0c51bb0b6e93049af5e88f93826e3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 596099077c004974b9ba66ea3002e11e, type: 2}
+  sprites:
+  - name: yellow_boxCheckmark
+    outer:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 38
+      height: 36
+    inner:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 38
+      height: 36
+    rotated: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: yellow_boxCross
+    outer:
+      serializedVersion: 2
+      x: 38
+      y: 0
+      width: 38
+      height: 36
+    inner:
+      serializedVersion: 2
+      x: 38
+      y: 0
+      width: 38
+      height: 36
+    rotated: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: yellow_boxTick
+    outer:
+      serializedVersion: 2
+      x: 76
+      y: 0
+      width: 36
+      height: 36
+    inner:
+      serializedVersion: 2
+      x: 76
+      y: 0
+      width: 36
+      height: 36
+    rotated: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: yellow_button00
+    outer:
+      serializedVersion: 2
+      x: 112
+      y: 0
+      width: 190
+      height: 49
+    inner:
+      serializedVersion: 2
+      x: 112
+      y: 0
+      width: 190
+      height: 49
+    rotated: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: yellow_button01
+    outer:
+      serializedVersion: 2
+      x: 302
+      y: 0
+      width: 190
+      height: 45
+    inner:
+      serializedVersion: 2
+      x: 302
+      y: 0
+      width: 190
+      height: 45
+    rotated: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: yellow_button02
+    outer:
+      serializedVersion: 2
+      x: 0
+      y: 49
+      width: 190
+      height: 49
+    inner:
+      serializedVersion: 2
+      x: 0
+      y: 49
+      width: 190
+      height: 49
+    rotated: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: yellow_button03
+    outer:
+      serializedVersion: 2
+      x: 190
+      y: 49
+      width: 190
+      height: 45
+    inner:
+      serializedVersion: 2
+      x: 190
+      y: 49
+      width: 190
+      height: 45
+    rotated: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: yellow_button04
+    outer:
+      serializedVersion: 2
+      x: 0
+      y: 98
+      width: 190
+      height: 49
+    inner:
+      serializedVersion: 2
+      x: 0
+      y: 98
+      width: 190
+      height: 49
+    rotated: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: yellow_button05
+    outer:
+      serializedVersion: 2
+      x: 190
+      y: 98
+      width: 190
+      height: 45
+    inner:
+      serializedVersion: 2
+      x: 190
+      y: 98
+      width: 190
+      height: 45
+    rotated: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: yellow_button06
+    outer:
+      serializedVersion: 2
+      x: 380
+      y: 98
+      width: 49
+      height: 49
+    inner:
+      serializedVersion: 2
+      x: 380
+      y: 98
+      width: 49
+      height: 49
+    rotated: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: yellow_button07
+    outer:
+      serializedVersion: 2
+      x: 429
+      y: 98
+      width: 49
+      height: 49
+    inner:
+      serializedVersion: 2
+      x: 429
+      y: 98
+      width: 49
+      height: 49
+    rotated: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: yellow_button08
+    outer:
+      serializedVersion: 2
+      x: 0
+      y: 147
+      width: 49
+      height: 45
+    inner:
+      serializedVersion: 2
+      x: 0
+      y: 147
+      width: 49
+      height: 45
+    rotated: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: yellow_button09
+    outer:
+      serializedVersion: 2
+      x: 49
+      y: 147
+      width: 49
+      height: 49
+    inner:
+      serializedVersion: 2
+      x: 49
+      y: 147
+      width: 49
+      height: 49
+    rotated: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: yellow_button10
+    outer:
+      serializedVersion: 2
+      x: 98
+      y: 147
+      width: 49
+      height: 45
+    inner:
+      serializedVersion: 2
+      x: 98
+      y: 147
+      width: 49
+      height: 45
+    rotated: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: yellow_button11
+    outer:
+      serializedVersion: 2
+      x: 147
+      y: 147
+      width: 49
+      height: 49
+    inner:
+      serializedVersion: 2
+      x: 147
+      y: 147
+      width: 49
+      height: 49
+    rotated: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: yellow_button12
+    outer:
+      serializedVersion: 2
+      x: 196
+      y: 147
+      width: 49
+      height: 45
+    inner:
+      serializedVersion: 2
+      x: 196
+      y: 147
+      width: 49
+      height: 45
+    rotated: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: yellow_button13
+    outer:
+      serializedVersion: 2
+      x: 245
+      y: 147
+      width: 190
+      height: 49
+    inner:
+      serializedVersion: 2
+      x: 245
+      y: 147
+      width: 190
+      height: 49
+    rotated: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: yellow_checkmark
+    outer:
+      serializedVersion: 2
+      x: 435
+      y: 147
+      width: 21
+      height: 20
+    inner:
+      serializedVersion: 2
+      x: 435
+      y: 147
+      width: 21
+      height: 20
+    rotated: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: yellow_circle
+    outer:
+      serializedVersion: 2
+      x: 456
+      y: 147
+      width: 36
+      height: 36
+    inner:
+      serializedVersion: 2
+      x: 456
+      y: 147
+      width: 36
+      height: 36
+    rotated: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: yellow_cross
+    outer:
+      serializedVersion: 2
+      x: 492
+      y: 147
+      width: 18
+      height: 18
+    inner:
+      serializedVersion: 2
+      x: 492
+      y: 147
+      width: 18
+      height: 18
+    rotated: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: yellow_panel
+    outer:
+      serializedVersion: 2
+      x: 0
+      y: 196
+      width: 100
+      height: 100
+    inner:
+      serializedVersion: 2
+      x: 0
+      y: 196
+      width: 100
+      height: 100
+    rotated: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: yellow_sliderDown
+    outer:
+      serializedVersion: 2
+      x: 100
+      y: 196
+      width: 28
+      height: 42
+    inner:
+      serializedVersion: 2
+      x: 100
+      y: 196
+      width: 28
+      height: 42
+    rotated: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: yellow_sliderLeft
+    outer:
+      serializedVersion: 2
+      x: 128
+      y: 196
+      width: 39
+      height: 31
+    inner:
+      serializedVersion: 2
+      x: 128
+      y: 196
+      width: 39
+      height: 31
+    rotated: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: yellow_sliderRight
+    outer:
+      serializedVersion: 2
+      x: 167
+      y: 196
+      width: 39
+      height: 31
+    inner:
+      serializedVersion: 2
+      x: 167
+      y: 196
+      width: 39
+      height: 31
+    rotated: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: yellow_sliderUp
+    outer:
+      serializedVersion: 2
+      x: 206
+      y: 196
+      width: 28
+      height: 42
+    inner:
+      serializedVersion: 2
+      x: 206
+      y: 196
+      width: 28
+      height: 42
+    rotated: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: yellow_tick
+    outer:
+      serializedVersion: 2
+      x: 234
+      y: 196
+      width: 17
+      height: 17
+    inner:
+      serializedVersion: 2
+      x: 234
+      y: 196
+      width: 17
+      height: 17
+    rotated: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  mCoordinates: 0
+  mPixelSize: 1
+  mReplacement: {fileID: 0}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 134118}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1

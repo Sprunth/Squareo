@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using NGenerics.DataStructures.Queues;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Debug = UnityEngine.Debug;
 
 public class GameMaster : MonoBehaviour
 {
@@ -26,11 +28,17 @@ public class GameMaster : MonoBehaviour
     private Direction _clearDirection;
 
     private int _score = 0;
-    private Text _scoreText;
+    private int _swipesLeft = 30;
+    public Text ScoreText;
+    public Text InfoText;
+    private TimeSpan timeLeft;
+    private Stopwatch stopWatch;
 
 	// Use this for initialization
 	void Start ()
 	{
+	    SetupGameMode();
+
 	    lineConnector = GameObject.FindGameObjectWithTag("LineConnector").GetComponent<LineConnector>();
 
 	    sizeX = 11;
@@ -45,14 +53,60 @@ public class GameMaster : MonoBehaviour
 	            CreateSquareAt(x, y);
 	        }
 	    }
-
-	    _scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
-
+	    
+        timeLeft = new TimeSpan(0,0,2,0);
+        stopWatch = new Stopwatch();
+        stopWatch.Start();
 	}
+
+    private void SetupGameMode()
+    {
+        Debug.Log("SelectedGameMode: " + Globals.SelectedGameMode);
+
+        switch (Globals.SelectedGameMode)
+        {
+            case Globals.GameMode.TimeTrial:
+            {
+                break;
+            }
+            case Globals.GameMode.Zen:
+            {
+                break;
+            }
+            case Globals.GameMode.ThirtySwipes:
+            {
+                break;
+            }
+        }
+
+    }
 	
 	// Update is called once per frame
 	void Update ()
 	{
+        // Time Trial stuff
+	    if (Globals.SelectedGameMode == Globals.GameMode.TimeTrial)
+	    {
+            timeLeft -= new TimeSpan(stopWatch.ElapsedTicks);
+            stopWatch.Reset();stopWatch.Start();
+	        InfoText.text = string.Format("{0}:{1}", timeLeft.Minutes, timeLeft.Seconds);
+	        if (timeLeft.TotalSeconds <= 0)
+	        {
+	            // TODO: get to endscreen/score screen
+                Application.LoadLevel("MainMenu");
+	        }
+	    }
+        else if (Globals.SelectedGameMode == Globals.GameMode.ThirtySwipes)
+        {
+            InfoText.text = string.Format("Swipes Left: {0}", _swipesLeft);
+            if (_swipesLeft <= 0)
+            {
+                // TODO: get to endscreen/score screen
+                Application.LoadLevel("MainMenu");
+            }
+        }
+        
+
 	    if (!_readyForNextSelection)
 	    {
 	        var needMoreTime = false;
@@ -416,7 +470,13 @@ public class GameMaster : MonoBehaviour
 
         // Update score
         _score += (int)Math.Pow(lineConnector.SelectedSquares.Count, 2);
-        _scoreText.text = String.Format("Score: {0}", _score);
+        ScoreText.text = String.Format("Score: {0}", _score);
+
+        // update swipes count
+        if (Globals.SelectedGameMode == Globals.GameMode.ThirtySwipes)
+        {
+            _swipesLeft--;
+        }
 
         lineConnector.SelectedSquares.ForEach(o =>
         {
