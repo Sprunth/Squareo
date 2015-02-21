@@ -27,12 +27,12 @@ public class GameMaster : MonoBehaviour
 
     private Direction _clearDirection;
 
-    private int _score = 0;
     private int _swipesLeft = 30;
     public Text ScoreText;
     public Text InfoText;
     private TimeSpan timeLeft;
     private Stopwatch stopWatch;
+    private bool endGameWait = false;
 
 	// Use this for initialization
 	void Start ()
@@ -93,7 +93,8 @@ public class GameMaster : MonoBehaviour
 	        if (timeLeft.TotalSeconds <= 0)
 	        {
 	            // TODO: get to endscreen/score screen
-                Application.LoadLevel("MainMenu");
+	            endGameWait = true;
+                stopWatch.Reset();stopWatch.Start();
 	        }
 	    }
         else if (Globals.SelectedGameMode == Globals.GameMode.ThirtySwipes)
@@ -102,9 +103,15 @@ public class GameMaster : MonoBehaviour
             if (_swipesLeft <= 0)
             {
                 // TODO: get to endscreen/score screen
-                Application.LoadLevel("MainMenu");
+                endGameWait = true;
+                stopWatch.Reset(); stopWatch.Start();
             }
         }
+
+	    if (endGameWait && stopWatch.Elapsed.Milliseconds > 2000)
+	    {
+            Application.LoadLevel("ScoreScreen");
+	    }
         
 
 	    if (!_readyForNextSelection)
@@ -454,8 +461,8 @@ public class GameMaster : MonoBehaviour
     /// </summary>
     void SelectionFinished()
     {
-        //TODO: restrict clear size to 3+ ? Need to check if no more valid moves
-        if (lineConnector.SelectedSquares.Count < 2)
+        //TODO: Need to check if no more valid moves
+        if (lineConnector.SelectedSquares.Count < 3)
         {
             // basically ignore the swipe
             lineConnector.ClearSquareConnection();
@@ -469,8 +476,8 @@ public class GameMaster : MonoBehaviour
         _clearDirection = SetClearDirection(lineConnector.SelectedSquares[0], lineConnector.SelectedSquares[1]);
 
         // Update score
-        _score += (int)Math.Pow(lineConnector.SelectedSquares.Count, 2);
-        ScoreText.text = String.Format("Score: {0}", _score);
+        Globals.Score += (int)Math.Pow(lineConnector.SelectedSquares.Count, 2);
+        ScoreText.text = String.Format("Score: {0}", Globals.Score);
 
         // update swipes count
         if (Globals.SelectedGameMode == Globals.GameMode.ThirtySwipes)

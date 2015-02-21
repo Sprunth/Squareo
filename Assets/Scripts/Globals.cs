@@ -5,4 +5,5 @@ public class Globals : MonoBehaviour
 {
     public enum GameMode { TimeTrial, Zen, ThirtySwipes }
     public static GameMode SelectedGameMode { get; set; }
+    public static int Score { get; set; }
 }
