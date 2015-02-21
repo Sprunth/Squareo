@@ -4,7 +4,7 @@ using System.Collections;
 
 public class SquareControl : MonoBehaviour
 {
-    private readonly static List<Color> colors = new List<Color>
+    public readonly static List<Color> CubeColors = new List<Color>
     {
         new Color(255/255f,97/255f,56/255f), //red
         new Color(98/255f,197/255f,74/255f), // green
@@ -27,7 +27,7 @@ public class SquareControl : MonoBehaviour
     private void Start()
     {
         //_gameMaster = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
-	    GetComponent<SpriteRenderer>().color = Color = colors[Random.Range(0, colors.Count)];
+	    GetComponent<SpriteRenderer>().color = Color = CubeColors[Random.Range(0, CubeColors.Count)];
 
         //gameObject.animation.enabled = false;
         //animation.Stop("SelectSquare");

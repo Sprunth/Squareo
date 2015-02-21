@@ -84,17 +84,31 @@ public class GameMaster : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+        // Once the game ends, wait a bit before transitioning
+        if (endGameWait)
+        {
+            Debug.Log(stopWatch.ElapsedMilliseconds);
+            if (stopWatch.ElapsedMilliseconds > 1400)
+                Application.LoadLevel("ScoreScreen");
+            return;
+        }
+
+
         // Time Trial stuff
 	    if (Globals.SelectedGameMode == Globals.GameMode.TimeTrial)
 	    {
             timeLeft -= new TimeSpan(stopWatch.ElapsedTicks);
             stopWatch.Reset();stopWatch.Start();
-	        InfoText.text = string.Format("{0}:{1}", timeLeft.Minutes, timeLeft.Seconds);
+            if (timeLeft.Seconds < 10)
+	            InfoText.text = string.Format("{0}:0{1}", timeLeft.Minutes, timeLeft.Seconds);
+            InfoText.text = timeLeft.Seconds < 10 ? 
+                string.Format("{0}:0{1}", timeLeft.Minutes, timeLeft.Seconds) :
+                string.Format("{0}:{1}", timeLeft.Minutes, timeLeft.Seconds);
 	        if (timeLeft.TotalSeconds <= 0)
 	        {
 	            // TODO: get to endscreen/score screen
 	            endGameWait = true;
-                stopWatch.Reset();stopWatch.Start();
+                stopWatch.Reset(); stopWatch.Start();
 	        }
 	    }
         else if (Globals.SelectedGameMode == Globals.GameMode.ThirtySwipes)
@@ -107,12 +121,6 @@ public class GameMaster : MonoBehaviour
                 stopWatch.Reset(); stopWatch.Start();
             }
         }
-
-	    if (endGameWait && stopWatch.Elapsed.Milliseconds > 2000)
-	    {
-            Application.LoadLevel("ScoreScreen");
-	    }
-        
 
 	    if (!_readyForNextSelection)
 	    {

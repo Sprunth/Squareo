@@ -4,27 +4,21 @@ using System.Collections;
 
 public class MainMenuMaster : MonoBehaviour
 {
+    public ParticleSystem ParticleSystem;
 
 	// Use this for initialization
 	void Start ()
 	{
-        
+        ParticleSystem.startColor = SquareControl.CubeColors[Random.Range(0, SquareControl.CubeColors.Count)];
 	}
 	
+
 	// Update is called once per frame
 	void Update ()
-    {
-
+	{
+	    ParticleSystem.startColor = SquareControl.CubeColors[Random.Range(0, SquareControl.CubeColors.Count)];
+        
 	}
-
-    public GUISkin GuiSkin;
-    void OnGUI()
-    {
-        GUI.skin = GuiSkin;
-
-
-
-    }
 
     public void OnTimeTrialClick()
     {
