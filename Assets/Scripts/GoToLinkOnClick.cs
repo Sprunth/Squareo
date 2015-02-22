@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayAgainButton : MonoBehaviour {
+public class GoToLinkOnClick : MonoBehaviour
+{
+
+    public string Url;
 
 	// Use this for initialization
 	void Start () {
@@ -15,6 +18,6 @@ public class PlayAgainButton : MonoBehaviour {
 
     public void OnClick()
     {
-        Application.LoadLevel("MainMenu");
+        Application.OpenURL(Url);
     }
 }

@@ -28,11 +28,13 @@ public class GameMaster : MonoBehaviour
     private Direction _clearDirection;
 
     private int _swipesLeft = 30;
-    public Text ScoreText;
-    public Text InfoText;
+    public UILabel ScoreText;
+    public UILabel InfoText;
     private TimeSpan timeLeft;
     private Stopwatch stopWatch;
     private bool endGameWait = false;
+
+    public AudioSource clearAudioSource;
 
 	// Use this for initialization
 	void Start ()
@@ -53,10 +55,13 @@ public class GameMaster : MonoBehaviour
 	            CreateSquareAt(x, y);
 	        }
 	    }
-	    
-        timeLeft = new TimeSpan(0,0,2,0);
+
+	    clearAudioSource = GetComponent<AudioSource>();
+
+        timeLeft = new TimeSpan(0, 0, 2, 0);
         stopWatch = new Stopwatch();
         stopWatch.Start();
+
 	}
 
     private void SetupGameMode()
@@ -477,6 +482,9 @@ public class GameMaster : MonoBehaviour
             return;
         }
         
+        // play sfx
+        clearAudioSource.Play();
+
         Debug.Log("New Selection Clear");
         _readyForNextSelection = false;
 
