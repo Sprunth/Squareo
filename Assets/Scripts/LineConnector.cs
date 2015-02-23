@@ -23,8 +23,8 @@ public class LineConnector : MonoBehaviour
 	    lineRenderer = gameObject.AddComponent<LineRenderer>();
         lineRenderer.SetWidth(0.1f, 0.1f);
 	    lineRenderer.material = LineMat;
-	    lineRenderer.castShadows = false;
-	    lineRenderer.receiveShadows = false;
+	    //lineRenderer.castShadows = false;
+	    //lineRenderer.receiveShadows = false;
 
 
 	}
